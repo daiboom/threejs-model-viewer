@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import {
+  DRACOLoader,
   EffectComposer,
   FBXLoader,
   GLTFLoader,
@@ -109,18 +110,19 @@ const _setupCamera = () => {
 
 const _setupLight = () => {
   // light 생성
-  light = new THREE.DirectionalLight(0xffffff, 5)
+  light = new THREE.AmbientLight(0xffffff, 5)
+
   light.position.set(10, 10, 0)
   // light.matrixWorldAutoUpdate = true
 
   scene.add(light)
-  scene.add(light.target)
+  // scene.add(light.target)
 
   // light helper 생성
-  lightHelper = new THREE.DirectionalLightHelper(light, 5)
+  // lightHelper = new THREE.DirectionalLightHelper(light, 5)
   // lightHelper.matrixWorldAutoUpdate = true
 
-  scene.add(lightHelper)
+  // scene.add(lightHelper)
 }
 
 const _setupModel = () => {}
@@ -369,7 +371,7 @@ const update = () => {
   }
 
   render()
-  lightHelper.update()
+  // lightHelper.update()
   orbitControls.update()
   stats.update()
 
@@ -466,7 +468,12 @@ document
         return
       case 'gltf':
       case 'glb':
-        new GLTFLoader().load(
+        const gltfLoader = new GLTFLoader()
+        const dracoLoader = new DRACOLoader()
+        dracoLoader.setDecoderPath('three/examples/js/libs/draco/')
+        gltfLoader.setDRACOLoader(dracoLoader)
+
+        gltfLoader.load(
           url,
           function (gltf) {
             gltf.scene.traverse((child) => {

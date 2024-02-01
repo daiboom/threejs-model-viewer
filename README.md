@@ -6,7 +6,7 @@
 https://threejs-model-viewer-kappa.vercel.app/
 
 ## Support Format
-glb, gltf, obj, fbx 형식의 파일을 지원합니다.
+glb, obj, fbx 형식의 파일을 지원합니다.
 
 ## GUI
 - 광원의 강도, 색상, 방향, 위치를 조절 할 수 있습니다.(Rotate 지원 예정)
@@ -22,6 +22,7 @@ glb, gltf, obj, fbx 형식의 파일을 지원합니다.
 bloomPass 적용되었습니다.
 
 ## 추후 기능 추가사항
+- gltf 형식 지원
 - 저장 기능
 - 링크 공유 기능
 - 반사, 굴절 기능
